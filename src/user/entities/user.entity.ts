@@ -18,8 +18,8 @@ export class User {
   @Column()
   username: string;
 
-  @Column()
-  refreshToken: string;
+  @Column({ nullable: true, select: false, length: 200 })
+  refreshToken?: string;
 
   @CreateDateColumn()
   createdAt: Date;
