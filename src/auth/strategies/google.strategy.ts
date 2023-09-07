@@ -38,6 +38,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     const newUser = this.userRepository.create({
       email,
       username: familyName,
+      profileImage: profile.photos[0].value,
     });
 
     await this.userRepository.save(newUser);
