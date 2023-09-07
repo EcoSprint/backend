@@ -1,0 +1,14 @@
+version: "2.0"
+
+services:
+  server:
+    build:
+      context: .
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+    ports:
+      - 3000:3000
+    extra_hosts:
+      - host.docker.internal:host-gateway
