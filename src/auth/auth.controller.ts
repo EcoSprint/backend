@@ -13,10 +13,12 @@ import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { REFRESH_TOKEN_KEY, REFRESH_TOKEN_OPTION } from 'src/utils/cookie';
 import { RefreshGuard } from './guards/refresh.guard';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AccessGuard } from './guards/access.guard';
+import { AuthResponseDto } from './dto/auth-response.dto';
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
@@ -46,7 +48,7 @@ export class AuthController {
 
   @Get('/refresh')
   @UseGuards(RefreshGuard)
-  async refresh(@Req() req: Request) {
+  async refresh(@Req() req: Request): Promise<AuthResponseDto> {
     if (!req.user)
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
 
@@ -55,7 +57,7 @@ export class AuthController {
     };
   }
 
-  @Get('/login')
+  @Get('/logout')
   @ApiBearerAuth()
   @UseGuards(AccessGuard)
   async logout(@Req() req: Request, @Res() res: Response) {
@@ -67,6 +69,6 @@ export class AuthController {
 
     await this.authService.removeRefreshToken(req.user);
     res.clearCookie(REFRESH_TOKEN_KEY);
-    res.send('ok');
+    res.json('ok');
   }
 }

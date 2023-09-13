@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from './user/entities/user.entity';
+import { Challenge } from './challenge/entities/challenge.entity';
+import { ChallengeStatus } from './challenge/entities/challenge-status.entity';
 
 @Module({
   imports: [
@@ -13,7 +15,7 @@ import { User } from './user/entities/user.entity';
         database: config.get<string>('DB_DATABASE'),
         username: config.get<string>('DB_USERNAME'),
         password: config.get<string>('DB_PASSWORD'),
-        entities: [User],
+        entities: [User, Challenge, ChallengeStatus],
         migrations: [],
         subscribers: [],
         synchronize: true,

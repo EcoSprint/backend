@@ -3,6 +3,9 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database.module';
+import { ChallengeModule } from './challenge/challenge.module';
+import { AdminModule } from './admin/admin.module';
+import { CommunityModule } from './community/community.module';
 
 @Module({
   imports: [
@@ -13,6 +16,9 @@ import { DatabaseModule } from './database.module';
     DatabaseModule,
     AuthModule,
     UserModule,
+    ChallengeModule,
+    AdminModule,
+    CommunityModule,
   ],
   controllers: [],
   providers: [],

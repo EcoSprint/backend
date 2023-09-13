@@ -8,6 +8,7 @@ import { RefreshStrategy } from './strategies/refresh.strategy';
 import { AccessStrategy } from './strategies/access.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AdminStrategy } from '../admin/strategies/admin.strategy';
 
 @Module({
   imports: [

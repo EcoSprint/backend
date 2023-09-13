@@ -10,7 +10,6 @@ function swagger(app: INestApplication) {
     .setTitle('API Document')
     .setDescription('REST API document')
     .setVersion('1.0')
-    .addTag('REST')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
